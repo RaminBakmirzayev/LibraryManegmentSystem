@@ -78,7 +78,14 @@ public class Library {
 
     }
 public void findBook(){
-        
+        String bookName=InputUtil.requareText("Enter book name");
+        for (Book b:books){
+            if (b.getName().equalsIgnoreCase(bookName)){
+                b.toString();
+            }else {
+                System.out.println("There is no any book as this name");
+            }
+        }
 }
 
 }

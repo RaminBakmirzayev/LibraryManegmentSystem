@@ -11,19 +11,20 @@ public class MenuUtil {
     public static void showMenu() {
         library.login();
         Menu.menu();
-        int selected = InputUtil.requareNumber("---------------");
-        if (selected == 1) {
-            library.showAllbooks();
-        } else if (selected == 2) {
-            library.getBooksInfo();
-        } else if (selected == 3) {
-            library.addBook();
-
-        } else if (selected == 4) {
-            library.removeBook();
-        } else if (selected == 5) {
+        int selected =0;
+        while (true) {
+             selected = InputUtil.requareNumber("---------------");
+            switch (selected) {
+                case 1 -> library.showAllbooks();
+                case 2 -> library.getBooksInfo();
+                case 3 -> library.addBook();
+                case 4 -> library.removeBook();
+                case 5 -> library.findBook();
+                case 6 -> System.exit(0);
+                case 7 -> showMenu();
+                default -> System.out.println("Enter valid number:");
+            }
 
         }
-
     }
 }
