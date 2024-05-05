@@ -1,7 +1,7 @@
 package Bean;
 
 public class Book {
-    private int bookId;
+    private String bookId;
     private String name;
     private String topic;
     private String publishYear;
@@ -11,18 +11,18 @@ public class Book {
     public Book(){
 
     }
-    public Book(int bookId, String name, String topic, String publishYear, String publisher) {
+    public Book(String bookId, String name, String topic, String publishYear, String publisher) {
         this.bookId = bookId;
         this.name = name;
         this.topic = topic;
         this.publishYear = publishYear;
         this.publisher = publisher;
     }
-    public int getId() {
+    public String getId() {
         return bookId;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.bookId = id;
     }
 

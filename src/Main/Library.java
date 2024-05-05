@@ -28,7 +28,7 @@ public class Library {
 
     public Book addInfoBook() {
         System.out.println("Enter information about books:");
-        int id = InputUtil.requareNumber("Enter Id");
+        String id = InputUtil.requareText("Enter Id");
         String bookName = InputUtil.requareText("Enter Book name");
         String topic = InputUtil.requareText("Enter Book's topic ");
         String publisher = InputUtil.requareText("Enter Publisher name");
@@ -61,24 +61,27 @@ public class Library {
         }
     }
 
-    public void removeBook() {
-        showAllbooks();
-        int id = InputUtil.requareNumber("Enter BookID that you want to remove");
-        for (Book b : books) {
-            if (b.getId() == id) {
+
+    public void findBookAndRemoveBook() {
+        String id = InputUtil.requareText("Enter BookID or Book's name that you want to remove");
+        List<Book> removedBooks = findBook(id);
+        if (!(removedBooks.isEmpty())) {
+            for (Book b : removedBooks) {
                 books.remove(b);
-            } else {
-                System.out.println("Something got wrong.Please,sure that you enter right Id");
+                System.out.println("Book got removed");
             }
+        } else {
+            System.out.println("Not found!.Please be sure you entered right");
         }
-        System.out.println("Book got removed");
+
         showAllbooks();
     }
+
 
     public List<Book> findBook(String text) {
         List<Book> result = new ArrayList<>();
         for (Book b : books) {
-            if ((b.getName().equalsIgnoreCase(text)) || b.getPublisher().equalsIgnoreCase(text)) {
+            if ((b.getName().equalsIgnoreCase(text)) || b.getPublisher().equalsIgnoreCase(text) || b.getId().equals(text)) {
                 result.add(b);
             }
         }
@@ -86,7 +89,7 @@ public class Library {
     }
 
     public void findBookAndPrintInfo() {
-        String text = InputUtil.requareText("Enter Book name or publisher name");
+        String text = InputUtil.requareText("Enter BookId or  Book name or publisher name");
         List<Book> booksFound = findBook(text);
         for (Book b : booksFound) {
             System.out.println(b);

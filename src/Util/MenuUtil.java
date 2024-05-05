@@ -28,7 +28,7 @@ public class MenuUtil {
                     Menu.menu();
                 }
                 case 4 -> {
-                    library.removeBook();
+                    library.findBookAndRemoveBook();
                     Menu.menu();
                 }
                 case 5 -> {

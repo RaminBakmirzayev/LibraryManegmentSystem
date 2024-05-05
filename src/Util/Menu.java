@@ -1,5 +1,4 @@
 package Util;
-
 public class Menu {
     public static void menu() {
         System.out.println("What do you want to do?");
