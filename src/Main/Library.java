@@ -5,10 +5,9 @@ import Util.InputUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
 
 public class Library {
-
 
     private ArrayList<Book> books;
 
@@ -19,13 +18,12 @@ public class Library {
     public void login() {
         String name = InputUtil.requareText("Enter Your name");
         int password = InputUtil.requareNumber("Enter Passworrd");
-        if (name.equals("Amina") && password == 20231231) {
+        if (name.equals("Amina") && password == 20) {
             System.out.println("Succesfully Login!");
         } else {
             System.out.println("Password or name is false");
             login();
         }
-
     }
 
     public Book addInfoBook() {
@@ -35,7 +33,7 @@ public class Library {
         String topic = InputUtil.requareText("Enter Book's topic ");
         String publisher = InputUtil.requareText("Enter Publisher name");
         String publishYear = InputUtil.requareText("Enter publish year");
-        Book book = new Book(id, bookName, topic, publisher, publishYear);
+        Book book = new Book(id, bookName, topic, publishYear, publisher);
 
         return book;
     }
@@ -72,20 +70,26 @@ public class Library {
             } else {
                 System.out.println("Something got wrong.Please,sure that you enter right Id");
             }
-            System.out.println("Book got removed");
-            showAllbooks();
         }
-
+        System.out.println("Book got removed");
+        showAllbooks();
     }
-public void findBook(){
-        String bookName=InputUtil.requareText("Enter book name");
-        for (Book b:books){
-            if (b.getName().equalsIgnoreCase(bookName)){
-                b.toString();
-            }else {
-                System.out.println("There is no any book as this name");
+
+    public List<Book> findBook(String text) {
+        List<Book> result = new ArrayList<>();
+        for (Book b : books) {
+            if ((b.getName().equalsIgnoreCase(text)) || b.getPublisher().equalsIgnoreCase(text)) {
+                result.add(b);
             }
         }
-}
+        return result;
+    }
 
+    public void findBookAndPrintInfo() {
+        String text = InputUtil.requareText("Enter Book name or publisher name");
+        List<Book> booksFound = findBook(text);
+        for (Book b : booksFound) {
+            System.out.println(b);
+        }
+    }
 }
